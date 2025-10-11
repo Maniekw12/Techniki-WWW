@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <title>Lista stron</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(270deg, #84d4f4, #97dff1, #89aee0, #7bd6db, #1c2a48);
+            background-size: 300% 300%;
+            animation: gradientBG 50s ease infinite;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.2);
+            padding: 25px 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            backdrop-filter: blur(10px);
+            min-width: 220px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05) rotate(-1deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            background: rgba(255,255,255,0.35);
+            color: #000;
+        }
+    </style>
 </head>
+
 <body>
-<h1>Wybierz stronę</h1>
-<ul>
-    <li><a href="BartoszMazurkiewicz.html">Bartosz Mazurkiewicz</a></li>
-    <li><a href="MarianWachala.html">Marian Wachała</a></li>
-    <li><a href="KubaLakos.html">Kuba Łakos</a></li>
-</ul>
+<h1>🌐 Wybierz stronę</h1>
+<div class="cards">
+    <a href="BartoszMazurkiewicz.html" class="card">Bartosz Mazurkiewicz</a>
+    <a href="MarianWachala.html" class="card">Marian Wachała</a>
+    <a href="KubaLakos.html" class="card">Kuba Łakos</a>
+</div>
 </body>
+
 </html>
