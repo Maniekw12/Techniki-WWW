@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kuba - o mnie</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(270deg, #ff9797, #fc7a7a, #fa6161, #fa1b1b, #800f0f);
+            background-size: 300% 300%;
+            animation: gradientBG 50s ease infinite;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        p.author {
+            color: white;
+        }
+
+        p.photos { 
+            text-align: left;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: white;
+            background-color: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        ul li a:hover {
+            background-color: rgba(255,255,255,0.4);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* About Section */
+        .about {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: #000;
+        }
+
+        /* photos Section */
+        .photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 0 10px;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card .content {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+
+        .card h3 {
+            margin-top: 0;
+            color: #000000;
+        }
+
+        .card p {
+            font-size: 0.95em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<h1>O mnie</h1>
+<p class="author">Autor: <b>Jakub Łakos</b></p>
+
+<ul>
+    <li><a href="index.html">Back</a></li>
+</ul>
+
+<section class="about">
+    <h2>Cześć!</h2>
+    <p>Nazywam się Jakub Łakos, mam 21 lat i pochodzę z Sanoka, miasta hokeja oraz Zdzisława Beksińskiego. Studiuję Informatykę Stosowaną na Uniwersytecie Jagiellońskim w Krakowie. W wolnych chwilach gotuję dla swojej dziewczyny, oglądam Premier League oraz wędkuje.</p>
+</section>
+
+<section class="photos">
+
+        <div class="card">
+            <img src="ryba.jpg" alt="Ja z rybą">
+            <div class="content">
+                <h3>Moja zdobycz</h3>
+                <p class="photo">Ja i moja zdobycz - leszcz, mały ale wariat</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="karina.jpg" alt="Mój pies karina">
+            <div class="content">
+                <h3>Mój piesek</h3>
+                <p class="photo">A to mój piesek Karina - biszkoptowy cocker spaniel</p>
+            </div>
+        </div>
+
+</section>
+</body>
+</html>
