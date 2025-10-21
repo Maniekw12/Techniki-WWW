@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Logowania</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(270deg, #18191a, #1b1b1b, #382c2c, #393030, #37393c);
+            background-size: 300% 300%;
+            animation: gradientBG 4s ease infinite;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: #222;
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #ffcc00;
+            transform: scale(1.02);
+            transition: 0.2s;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        .back_button_bg {
+            margin-top: 20px;
+        }
+
+        .back_button {
+            padding: 12px 20px;
+            border: #474545;
+            border-radius: 10px;
+            background-color: #5d5c5c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .back_button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ffcc00;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1>Welcome to Login Page</h1>
+
+<form action="logowanie.html" method="post">
+    <label for="username">Login:</label>
+    <input type="text" id="username" name="username" placeholder="Wpisz login" required>
+
+    <label for="password">Hasło:</label>
+    <input type="password" id="password" name="password" placeholder="Wpisz hasło" required>
+
+    <button type="submit">Zaloguj się</button>
+</form>
+
+<div class="back_button_bg">
+    <button class="back_button" onclick="window.location.href='Main_page.html'">Back to the main page</button>
+</div>
+
+</body>
+</html>
