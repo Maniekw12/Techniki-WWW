@@ -9,9 +9,10 @@
             margin: 0;
             height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
             flex-direction: column;
+            justify-content: flex-start; /* nie wyśrodkowuj w pionie */
+            padding: 20px 0; /* trochę przestrzeni u góry i dołu */
             background: linear-gradient(270deg, #18191a, #1b1b1b, #382c2c, #393030, #37393c);
             background-size: 300% 300%;
             animation: gradientBG 4s ease infinite;
@@ -100,6 +101,40 @@
             transform: scale(1.05);
             box-shadow: 0 0 10px #ffcc00;
         }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+                text-align: center;
+                padding: 0 10px;
+            }
+
+            form {
+                width: 90%;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                font-size: 13px;
+                padding: 8px;
+            }
+
+            button, .back_button {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .back_button_bg {
+                margin-top: 15px;
+            }
+        }
+
+        .checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
 
 
     </style>
@@ -113,6 +148,13 @@
 
     <label for="password">Hasło:</label>
     <input type="password" id="password" name="password" placeholder="Wpisz hasło" required>
+
+
+    <label for="remember">
+        <input type="checkbox" id="remember" name="remember">
+        Zapamiętaj mnie
+    </label>
+
 
     <button type="submit">Zaloguj się</button>
 </form>
