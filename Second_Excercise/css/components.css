@@ -1,0 +1,214 @@
+/* Przyciski */
+.button {
+    background-color: #333;
+    color: white;
+    padding: 15px 30px;
+    border: 2px solid #555;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.open-login {
+    text-decoration: none;
+    color: #fff;
+    background: #333;
+    padding: 12px 25px;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.open-login:hover {
+    background: #555;
+}
+
+.open-login:active {
+    transform: scale(0.98);
+}
+
+/* Grid items - bazowa klasa */
+.grid-item {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    width: 400px;
+    padding: 40px 0;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: transform 0.3s, background-color 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.grid-item::after {
+    content: attr(data-hover);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 20px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+    background-color: #555;
+}
+
+.grid-item:hover::after {
+    opacity: 1;
+}
+
+/* Dziedziczenie - specyficzne klasy grid-item */
+.grid-item.fast {
+    background-color: #2a4d2a;
+}
+
+.grid-item.slow {
+    background-color: #4d2a2a;
+}
+
+.grid-item.hard {
+    background-color: #2a2a4d;
+}
+
+.grid-item.easy {
+    background-color: #4d4d2a;
+}
+
+.grid-item:nth-child(odd) {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal:target {
+    display: flex;
+}
+
+.modal-content {
+    background: #222;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    color: #b4b5c2;
+    position: relative;
+}
+
+.modal-content > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"],
+.modal-content input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    margin-top: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="password"]:focus,
+.modal-content input[type="email"]:focus {
+    border-color: #777;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+
+.modal-content input:invalid:not(:placeholder-shown) {
+    border-color: #8b0000;
+}
+
+.modal-content input:valid:not(:placeholder-shown) {
+    border-color: #2a4d2a;
+}
+
+.modal-content input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.modal-content input[type="checkbox"]:checked + label {
+    color: #4d4;
+}
+
+.modal-content button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.modal-content button:hover {
+    background-color: #555;
+}
+
+.modal-content button:active {
+    transform: scale(0.98);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.9em;
+    gap: 8px;
+}
+
+.checkbox-container label {
+    margin: 0;
+}

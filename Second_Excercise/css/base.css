@@ -1,0 +1,61 @@
+/* Reset i box-sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Podstawowy layout body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(270deg, #18191a, #1b1b1b, #382c2c, #393030, #37393c);
+    background-size: 300% 300%;
+    animation: gradientBG 4s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: #dacece;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0;
+}
+
+/* Nagłówek */
+h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+h1::after {
+    content: " 🌟";
+}
+
+/* Button container - flexbox */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h1 + .button-container {
+    border-top: 10px dashed gray;
+    border-bottom: 10px dashed gray;
+    border-right: 10px dashed gray;
+    border-left: 10px dashed gray;
+}
+
+.button-container ~ .grid-section {
+    margin-top: 50px;
+}
+
+/* Grid section - CSS Grid */
+.grid-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 90%;
+    max-width: 1000px;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
