@@ -234,23 +234,39 @@
             background: #555;
         }
 
+        /* Specyficzne style dla poszczególnych kafelków - dziedziczą po .grid-item */
+        .grid-item.fast {
+            background-color: #2a4d2a;
+        }
+
+        .grid-item.slow {
+            background-color: #4d2a2a;
+        }
+
+        .grid-item.hard {
+            background-color: #2a2a4d;
+        }
+
+        .grid-item.easy {
+            background-color: #4d4d2a;
+        }
+
     </style>
 </head>
 <body>
 <h1>Welcome to my page</h1>
 <div class="button-container">
     <a href="#loginModal" class="open-login">logowanie</a>
-    <button class="button" onclick="window.location.href='rejestracja.html'">Rejestracja</button>
+    <a href="#registerModal" class="open-login">Rejestracja</a>
 </div>
 
 
 <div class="grid-section">
-    <div class="grid-item">Fast</div>
-    <div class="grid-item">Slow</div>
-    <div class="grid-item">Hard</div>
-    <div class="grid-item">Easy</div>
+    <div class="grid-item fast" >Fast🚀</div>
+    <div class="grid-item slow" >Slow🐌</div>
+    <div class="grid-item hard" >Hard💪</div>
+    <div class="grid-item easy" >Easy✨</div>
 </div>
-
 
 <!-- MODAL z formularzem -->
 <div id="loginModal" class="modal">
@@ -274,6 +290,33 @@
     </div>
 </div>
 
+<!-- MODAL z formularzem rejestracji -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✕</a>
+        <h2>Rejestracja</h2>
+        <form>
+            <label for="reg-username">Login:</label>
+            <input type="text" id="reg-username" name="username" placeholder="Wybierz login" required>
+
+            <label for="reg-email">Email:</label>
+            <input type="email" id="reg-email" name="email" placeholder="Wpisz email" required>
+
+            <label for="reg-password">Hasło:</label>
+            <input type="password" id="reg-password" name="password" placeholder="Wpisz hasło" required>
+
+            <label for="reg-password-confirm">Powtórz hasło:</label>
+            <input type="password" id="reg-password-confirm" name="password-confirm" placeholder="Powtórz hasło" required>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Akceptuję regulamin</label>
+            </div>
+
+            <button type="submit">Zarejestruj się</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
