@@ -7,24 +7,90 @@
 
 /* Media queries - responsywność */
 @media (max-width: 768px) {
-    .grid-section {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .button-container {
-        gap: 15px;
-        padding: 0 20px;
-    }
-
-    .grid-item {
-        padding: 30px 0;
-        font-size: 16px;
-        width: 100%;
-        max-width: 400px;
+    body {
+        padding: 15px 0;
     }
 
     h1 {
-        font-size: 1.5em;
+        font-size: 1.2em;      /* było 1.5em → mniejsze */
+        margin: 8px 0;
     }
+
+    .button-container {
+        gap: 12px;
+        padding: 10px;
+        width: 50%;
+        align-items: center;
+    }
+
+    .button,
+    .open-login {
+        padding: 10px 20px;    /* było 15px 30px */
+        font-size: 13px;       /* było 15px */
+        width: 50%;
+        text-align: center;
+    }
+
+    .grid-section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 95%;
+        margin-top: 25px;
+    }
+
+    .grid-item {
+        padding: 25px 15px;    /* było 35px 20px */
+        font-size: 14px;       /* było 16px */
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .grid-item::after {
+        font-size: 14px;       /* było 20px */
+    }
+
+    .modal-content {
+        width: 75%;            /* było 95% */
+        max-width: 250px;      /* było 400px */
+        padding: 8px;          /* było 25px 20px */
+        border-radius: 8px;    /* było 15px */
+    }
+
+    .modal-content h2 {
+        font-size: 0.7em;      /* było 1.3em */
+        margin-bottom: 6px;
+    }
+
+    .modal-content label {
+        font-size: 0.7em;      /* zmniejszone napisy etykiet */
+        margin-top: 5px;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="password"],
+    .modal-content input[type="email"] {
+        padding: 5px;          /* było 12px */
+        font-size: 10px;       /* było 16px */
+    }
+
+    .modal-content button {
+        padding: 6px;          /* było 14px */
+        font-size: 10px;       /* było 15px */
+        margin-top: 8px;
+        border-radius: 6px;
+    }
+
+    .checkbox-container {
+        font-size: 0.6em;      /* jeszcze mniejsze */
+        gap: 4px;
+    }
+
+    .close {
+        top: 4px;
+        right: 6px;
+        font-size: 14px;       /* było 22px */
+    }
+
 }
+
+

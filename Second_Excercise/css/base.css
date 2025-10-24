@@ -38,11 +38,16 @@ h1::after {
 }
 
 h1 + .button-container {
-    border-top: 10px dashed gray;
-    border-bottom: 10px dashed gray;
-    border-right: 10px dashed gray;
-    border-left: 10px dashed gray;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 25px;
 }
+
+h1 + .button-container:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.1);
+}
+
 
 .button-container ~ .grid-section {
     margin-top: 50px;
@@ -58,4 +63,26 @@ h1 + .button-container {
     justify-items: center;
     justify-content: center;
     align-items: center;
+}
+
+
+#registerModal .modal-content {
+    max-width: 450px;     /* szerszy, żeby pola się zmieściły */
+    width: 90%;
+    padding: 30px 25px;   /* trochę więcej miejsca */
+    overflow-y: auto;     /* jeśli zabraknie miejsca, pojawi się przewijanie */
+    max-height: 90vh;     /* nie wyjdzie poza ekran */
+}
+
+#registerModal .modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#registerModal .modal-content::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+}
+
+#registerModal .modal-content::-webkit-scrollbar-thumb:hover {
+    background: #777;
 }
