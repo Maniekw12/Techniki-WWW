@@ -72,6 +72,25 @@
     opacity: 1;
 }
 
+.grid-label {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.55);
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.grid-item:hover .grid-label {
+    background: rgba(0, 0, 0, 0.75);
+    transform: translateX(-50%) scale(1.05);
+    transition: transform 0.3s, background 0.3s;
+}
+
 /* Dziedziczenie - specyficzne klasy grid-item */
 /* Dziedziczenie - nowe klasy grid-item */
 .grid-item.forest {
