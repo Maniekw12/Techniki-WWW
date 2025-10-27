@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona z przyciskami</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+<h1>Welcome to my page</h1>
+<div class="button-container">
+    <a href="#loginModal" class="open-login">Logowanie</a>
+    <a href="#registerModal" class="open-login">Rejestracja</a>
+</div>
+
+<section class="grid-section">
+    <div class="grid-item forest" onclick="location.href='#forestModal'">
+        <span class="grid-label">Las</span>
+    </div>
+    <div class="grid-item desert" onclick="location.href='#desertModal'">
+        <span class="grid-label">Pustynia</span>
+    </div>
+    <div class="grid-item ocean" onclick="location.href='#oceanModal'">
+        <span class="grid-label">Ocean</span>
+    </div>
+    <div class="grid-item mountain" onclick="location.href='#mountainModal'">
+        <span class="grid-label">Góry</span>
+    </div>
+</section>
+
+<div id="forestModal" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✕</a>
+        <h2>Las</h2>
+        <p>Klimatyczny las pełen zieleni i tajemnicy.</p>
+    </div>
+</div>
+<div id="desertModal" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✕</a>
+        <h2>Pustynia</h2>
+        <p>Rozległe wydmy i gorący, złoty piasek.</p>
+    </div>
+</div>
+<div id="oceanModal" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✕</a>
+        <h2>Ocean</h2>
+        <p>Nieskończona głębia i morska bryza.</p>
+    </div>
+</div>
+<div id="mountainModal" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✕</a>
+        <h2>Góry</h2>
+        <p>Potężne szczyty sięgające chmur.</p>
+    </div>
+</div>
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✕</a>
+        <h2>Logowanie</h2>
+        <form>
+            <label for="username">Login:</label>
+            <input type="text" id="username" name="username" placeholder="Wpisz login" required>
+
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" placeholder="Wpisz hasło" required>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Zapamiętaj mnie</label>
+            </div>
+
+            <button type="submit">Zaloguj się</button>
+        </form>
+    </div>
+</div>
+
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <a href="#" class="close">✕</a>
+        <h2>Rejestracja</h2>
+        <form>
+            <label for="reg-username">Login:</label>
+            <input type="text" id="reg-username" name="username" placeholder="Wybierz login" required>
+
+            <label for="reg-email">Email:</label>
+            <input type="email" id="reg-email" name="email" placeholder="Wpisz email" required>
+
+            <label for="reg-password">Hasło:</label>
+            <input type="password" id="reg-password" name="password" placeholder="Wpisz hasło" required>
+
+            <label for="reg-password-confirm">Powtórz hasło:</label>
+            <input type="password" id="reg-password-confirm" name="password-confirm" placeholder="Powtórz hasło" required>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Akceptuję regulamin</label>
+            </div>
+
+            <button type="submit">Zarejestruj się</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

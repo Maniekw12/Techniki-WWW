@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab CSS</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 2em;
+        }
+        h1::after {
+            content: " 🌟";
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .grid-container .item {
+            background-color: lightblue;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid gray;
+        }
+
+
+
+        #main-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+            padding: 10px;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            background-color: #f0fff0;
+            margin: 0 auto 20px auto; /* to wycentruje formularz */
+        }
+
+        #main-form input,
+        #main-form select,
+        #main-form button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #main-form input:focus,
+        #main-form select:focus {
+            outline-color: #28a745;
+        }
+
+        #main-form button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        #main-form button:hover {
+            transform: scale(1.5);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: darkslategray;
+            margin: 20px;
+
+            animation: animated-background 1s infinite alternate;
+        }
+
+        @keyframes animated-background{
+            0% {
+                background-color: #dacece;
+            }
+            50% {
+                background-color: #1b5cc3;
+            }
+            100% {
+                background-color: #f20b14;
+            }
+        }
+
+        #main-form label input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        h1 + .grid-container {
+            border-top: 20px dashed gray;
+            border-bottom: 20px dashed gray;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1>Testujemy CSS</h1>
+<section class="grid-container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+</section>
+
+<section class="grid-container">
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+</section>
+<h1>TESTUJEMY 2 </h1>
+
+
+<form id="main-form">
+    <label for="name">Imię:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="gender">Płeć:</label>
+    <select id="gender" name="gender" required>
+        <option value="">Wybierz...</option>
+        <option value="male">Mężczyzna</option>
+        <option value="female">Kobieta</option>
+    </select>
+
+    <label>
+        <input type="checkbox" name="subscribe">
+        Chcę otrzymywać newsletter
+    </label>
+
+    <button type="submit">Wyślij</button>
+</form>
+
+
+
+</body>
+</html>
