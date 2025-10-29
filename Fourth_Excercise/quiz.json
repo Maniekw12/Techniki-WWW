@@ -1,0 +1,12 @@
+[
+  {
+    "question": "Które zwierzę jest ssakiem?",
+    "answers": ["Kura", "Kot", "Żaba", "Rekin"],
+    "correct": 1
+  },
+  {
+    "question": "Ile to 2 + 2?",
+    "answers": ["3", "4", "5", "22"],
+    "correct": 1
+  }
+]

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Prosty Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f8f9fa; }
+        .question { margin-bottom: 15px; font-weight: bold; }
+        .answers button {
+            display: block;
+            margin: 5px 0;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fff;
+            cursor: pointer;
+        }
+        .answers button:hover { background: #e9ecef; }
+        #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+<h1>Quiz</h1>
+<div id="quiz"></div>
+<div id="result"></div>
+
+<script>
+    async function loadQuiz() {
+        const res = await fetch('quiz.json');
+        const questions = await res.json();
+        const quizContainer = document.getElementById('quiz');
+        const resultContainer = document.getElementById('result');
+        let score = 0;
+        let current = 0;
+
+        function showQuestion() {
+            const q = questions[current];
+            quizContainer.innerHTML = `
+          <div class="question">${q.question}</div>
+          <div class="answers">
+            ${q.answers.map((a, i) => `<button data-index="${i}">${a}</button>`).join('')}
+          </div>
+        `;
+            document.querySelectorAll('.answers button').forEach(btn => {
+                btn.onclick = () => {
+                    if (parseInt(btn.dataset.index) === q.correct) score++;
+                    current++;
+                    if (current < questions.length) showQuestion();
+                    else showResult();
+                };
+            });
+        }
+
+        function showResult() {
+            quizContainer.innerHTML = '';
+            resultContainer.textContent = `Twój wynik: ${score} / ${questions.length}`;
+        }
+
+        showQuestion();
+    }
+
+    loadQuiz();
+</script>
+</body>
+</html>
