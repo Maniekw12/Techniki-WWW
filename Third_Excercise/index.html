@@ -5,114 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator</title>
     <style>
-        /* Global */
-        body {
+        * {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            background: #1a1a2e;
         }
 
-        /* Kalkulator */
         .calculator {
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            width: 340px;
+            background: #16213e;
+            width: 360px;
             padding: 25px;
-            border-radius: 25px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 0 0 3px rgba(255,255,255,0.1) inset;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
-        /* Wyświetlacz */
         .display {
-            width: 80%;           /* zmniejszamy szerokość, żeby było widać marginesy */
-            height: 60px;
-            border-radius: 15px;
+            width: 100%;
+            height: 80px;
+            border-radius: 12px;
             border: none;
-            margin: 0 auto 20px auto; /* wyśrodkowanie względem kontenera */
-            font-size: 2rem;
-            text-align: center;   /* tekst w środku inputa */
-            padding: 0 10px;
-            background: #f7f7f7;
-            box-shadow: inset 0 4px 8px rgba(0,0,0,0.1);
-            color: #333;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            display: block;       /* potrzebne, żeby margin auto zadziałało */
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: right;
+            padding: 0 20px;
+            background: #0f3460;
+            color: #e94560;
+            border: 2px solid #1a4d7a;
         }
 
-
-        /* Siatka przycisków */
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
         }
 
-        /* Wszystkie przyciski */
         .button {
-            padding: 20px 0;
+            padding: 22px 0;
             font-size: 1.5rem;
+            font-weight: 600;
             border: none;
-            border-radius: 15px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+
+        .button.number {
+            background: #533483;
             color: #fff;
         }
 
-        /* Kolory przycisków */
-        .button.number {
-            background: linear-gradient(145deg, #4facfe, #00f2fe);
-        }
         .button.number:hover {
-            transform: scale(1.1);
-            background: linear-gradient(145deg, #00f2fe, #4facfe);
+            background: #6b4299;
+            transform: translateY(-2px);
         }
 
         .button.operator {
-            background: linear-gradient(145deg, #f7971e, #ffd200);
+            background: #e94560;
+            color: #fff;
         }
+
         .button.operator:hover {
-            transform: scale(1.1);
-            background: linear-gradient(145deg, #ffd200, #f7971e);
+            background: #ff5577;
+            transform: translateY(-2px);
         }
 
         .button.clear {
-            background: linear-gradient(145deg, #f857a6, #ff5858);
+            background: #c23b5b;
+            color: #fff;
         }
+
         .button.clear:hover {
-            transform: scale(1.1);
-            background: linear-gradient(145deg, #ff5858, #f857a6);
+            background: #d94560;
+            transform: translateY(-2px);
         }
 
         .button.equal {
-            background: linear-gradient(145deg, #00b09b, #96c93d);
+            background: #00adb5;
+            color: #fff;
         }
+
         .button.equal:hover {
-            transform: scale(1.1);
-            background: linear-gradient(145deg, #96c93d, #00b09b);
+            background: #00c9d1;
+            transform: translateY(-2px);
+        }
+
+        .button.factorial {
+            grid-column: 2 / span 2;
+            background: #ff6b35;
+            color: #fff;
+        }
+
+        .button.factorial:hover {
+            background: #ff7f50;
+            transform: translateY(-2px);
         }
 
         .button:active {
-            transform: scale(0.95);
-        }
-
-        /* Specjalny przycisk silni */
-        .button.factorial {
-            grid-column: 2 / span 2; /* zajmuje środek dolnego rzędu */
-            background: linear-gradient(145deg, #ff6a00, #ffb347);
-        }
-        .button.factorial:hover {
-            transform: scale(1.1);
-            background: linear-gradient(145deg, #ffb347, #ff6a00);
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+
+
 
 <div class="calculator">
     <input type="text" id="display" class="display" disabled>
@@ -136,6 +141,7 @@
         <button class="button number" onclick="appendNumber('2')">2</button>
         <button class="button number" onclick="appendNumber('3')">3</button>
         <button class="button number" onclick="appendNumber('0')">0</button>
+        <button class="button number" onclick="appendDecimal()">.</button>
 
         <!-- Przycisk silni na środku dolnego rzędu -->
         <button class="button factorial" onclick="calculateFactorial()">!</button>
@@ -150,7 +156,7 @@
     const display = document.getElementById('display');
     const ERROR_MSG = "Błąd";
     const INFINITY_MSG = "Infinity";
-    const MAX_LENGTH = 9;
+    const MAX_LENGTH = 11;
 
     function validateScreen(){
         if (display.value === ERROR_MSG || display.value === INFINITY_MSG) clearDisplay();
@@ -160,7 +166,7 @@
         display.value = display.value.slice(0, -1);
     }
 
-        function appendNumber(number) {
+    function appendNumber(number) {
         validateScreen();
         if(display.value.length < MAX_LENGTH) {
             display.value += number;
@@ -170,7 +176,14 @@
     function appendOperation(operator){
         validateScreen();
 
-        if (display.value !== '' && !['+', '-', '*', '/'].includes(display.value.slice(-1))) {
+        if (display.value !== '' && !['+', '-', '*', '/'].includes(display.value.slice(-1)) &&
+            display.value.length < MAX_LENGTH -1) {
+
+            display.value += operator;
+        }
+
+        if(['+', '-', '*', '/'].includes(display.value.slice(-1))){
+            deleteOneElement();
             display.value += operator;
         }
     }
@@ -181,7 +194,19 @@
 
     function calculate() {
         try {
-            display.value = eval(display.value);
+            if(['+', '-', '*', '/'].includes(display.value.slice(-1))){
+                deleteOneElement();
+            }
+
+            let result = eval(display.value);
+
+            result = result.toString();
+
+            if(result.length > MAX_LENGTH){
+                result = result.slice(0,MAX_LENGTH);
+            }
+            display.value = result;
+
         } catch (error) {
             display.value = ERROR_MSG;
         }
@@ -198,10 +223,27 @@
             for (let i = 2; i <= n; i++) {
                 result *= i;
             }
+
+
             display.value = result;
         }
         catch (error){
             display.value = ERROR_MSG;
+        }
+    }
+
+    function appendDecimal() {
+        validateScreen();
+
+        let lastNumber = display.value.split(/[\+\-\*\/]/).pop();
+
+        if (!lastNumber.includes('.') && display.value.length < MAX_LENGTH -1
+        && !['+', '-', '*', '/'].includes(display.value.slice(-1))) {
+            if (display.value === '') {
+                display.value = '0.';
+            } else {
+                display.value += '.';
+            }
         }
     }
 
