@@ -4,62 +4,124 @@
     <meta charset="UTF-8">
     <title>Prosty Quiz</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f8f9fa; }
-        .question { margin-bottom: 15px; font-weight: bold; }
-        .answers button {
-            display: block;
-            margin: 5px 0;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background: #fff;
-            cursor: pointer;
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
         }
-        .answers button:hover { background: #e9ecef; }
-        #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+
+        .quiz-container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .progress {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 6px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background: #e9ecef;
+            transform: scale(1.02);
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 15px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
-<h1>Quiz</h1>
-<div id="quiz"></div>
-<div id="result"></div>
+
+<div class="quiz-container">
+    <h1>Quiz</h1>
+    <div id="quiz"></div>
+    <div id="result"></div>
+</div>
 
 <script>
-    async function loadQuiz() {
-        const res = await fetch('quiz.json');
-        const questions = await res.json();
-        const quizContainer = document.getElementById('quiz');
-        const resultContainer = document.getElementById('result');
+    const file = 'quiz.json';
+
+    async function startQuiz() {
+        const response = await fetch(file);
+        const questions = await response.json();
+
+        const quizDiv = document.getElementById('quiz');
+        const resultDiv = document.getElementById('result');
+
         let score = 0;
         let current = 0;
 
-        function showQuestion() {
+        while (current < questions.length) {
             const q = questions[current];
-            quizContainer.innerHTML = `
+
+            quizDiv.innerHTML = `
+          <div class="progress">Pytanie ${current + 1} z ${questions.length}</div>
           <div class="question">${q.question}</div>
-          <div class="answers">
-            ${q.answers.map((a, i) => `<button data-index="${i}">${a}</button>`).join('')}
-          </div>
+          ${q.answers.map((ans, i) => `<button data-index="${i}">${ans}</button>`).join('')}
         `;
-            document.querySelectorAll('.answers button').forEach(btn => {
-                btn.onclick = () => {
-                    if (parseInt(btn.dataset.index) === q.correct) score++;
-                    current++;
-                    if (current < questions.length) showQuestion();
-                    else showResult();
-                };
+
+            const userAnswer = await new Promise(resolve => {
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        resolve(parseInt(btn.dataset.index));
+                    });
+                });
             });
+
+            if (userAnswer === q.correct) score++;
+            current++;
         }
 
-        function showResult() {
-            quizContainer.innerHTML = '';
-            resultContainer.textContent = `Twój wynik: ${score} / ${questions.length}`;
-        }
-
-        showQuestion();
+        quizDiv.innerHTML = '';
+        resultDiv.textContent = `Twój wynik: ${score} / ${questions.length}`;
     }
 
-    loadQuiz();
+    startQuiz();
 </script>
+
 </body>
 </html>
