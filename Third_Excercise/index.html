@@ -155,10 +155,12 @@
     const INFINITY_MSG = "Infinity";
     const MAX_LENGTH = 11;
     const OPERATIONS = ['+', '-', '*', '/'];
-    display.value = 'licz :D'
+    const WELCOME_MESSAGE = 'licz :D';
+
+    display.value = WELCOME_MESSAGE;
 
     function validateScreen() {
-        if (display.value === ERROR_MSG || display.value === INFINITY_MSG) clearDisplay();
+        if (display.value === ERROR_MSG || display.value === INFINITY_MSG || display.value === WELCOME_MESSAGE) clearDisplay();
     }
 
     function canAppend(valueToAdd, type) {
