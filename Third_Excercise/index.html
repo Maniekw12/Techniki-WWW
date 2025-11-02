@@ -151,12 +151,12 @@
 </div>
 
 
-<!-- Twój skrypt JavaScript zostaje bez zmian -->
 <script>
     const display = document.getElementById('display');
     const ERROR_MSG = "Błąd";
     const INFINITY_MSG = "Infinity";
     const MAX_LENGTH = 11;
+    const OPERATIONS = ['+', '-', '*', '/'];
 
     function validateScreen(){
         if (display.value === ERROR_MSG || display.value === INFINITY_MSG) clearDisplay();
@@ -182,7 +182,7 @@
             display.value += operator;
         }
 
-        if(['+', '-', '*', '/'].includes(display.value.slice(-1))){
+        if(OPERATIONS.includes(display.value.slice(-1))){
             deleteOneElement();
             display.value += operator;
         }
@@ -194,7 +194,7 @@
 
     function calculate() {
         try {
-            if(['+', '-', '*', '/'].includes(display.value.slice(-1))){
+            if(OPERATIONS.includes(display.value.slice(-1))){
                 deleteOneElement();
             }
 
@@ -238,7 +238,7 @@
         let lastNumber = display.value.split(/[\+\-\*\/]/).pop();
 
         if (!lastNumber.includes('.') && display.value.length < MAX_LENGTH -1
-        && !['+', '-', '*', '/'].includes(display.value.slice(-1))) {
+        && !OPERATIONS.includes(display.value.slice(-1))) {
             if (display.value === '') {
                 display.value = '0.';
             } else {
