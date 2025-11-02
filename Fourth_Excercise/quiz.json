@@ -1,12 +1,52 @@
 [
   {
-    "question": "Które zwierzę jest ssakiem?",
-    "answers": ["Kura", "Kot", "Żaba", "Rekin"],
+    "question": "Jakie jest stolicą Polski?",
+    "answers": ["Warszawa", "Kraków", "Gdańsk", "Poznań"],
+    "correct": 0
+  },
+  {
+    "question": "Ile jest 5 + 3?",
+    "answers": ["6", "7", "8", "9"],
+    "correct": 2
+  },
+  {
+    "question": "Jakie zwierzę szczeka?",
+    "answers": ["Kot", "Koń", "Pies", "Kura"],
+    "correct": 2
+  },
+  {
+    "question": "Jakiego koloru jest niebo w słoneczny dzień?",
+    "answers": ["Zielone", "Niebieskie", "Czerwone", "Żółte"],
     "correct": 1
   },
   {
-    "question": "Ile to 2 + 2?",
-    "answers": ["3", "4", "5", "22"],
+    "question": "Ile dni ma tydzień?",
+    "answers": ["5", "6", "7", "8"],
+    "correct": 2
+  },
+  {
+    "question": "Który miesiąc ma 28 dni?",
+    "answers": ["Luty", "Kwiecień", "Czerwiec", "Listopad"],
+    "correct": 0
+  },
+  {
+    "question": "Jak nazywa się największy ocean na Ziemi?",
+    "answers": ["Atlantycki", "Spokojny", "Indyjski", "Arktyczny"],
+    "correct": 1
+  },
+  {
+    "question": "Co rośnie w lesie?",
+    "answers": ["Domy", "Samochody", "Drzewa", "Komputery"],
+    "correct": 2
+  },
+  {
+    "question": "Jak nazywa się planeta, na której żyjemy?",
+    "answers": ["Mars", "Ziemia", "Wenus", "Merkury"],
+    "correct": 1
+  },
+  {
+    "question": "Jakim kolorem jest trawa?",
+    "answers": ["Czerwona", "Zielona", "Niebieska", "Fioletowa"],
     "correct": 1
   }
 ]

@@ -120,7 +120,15 @@
         resultDiv.textContent = `Twój wynik: ${score} / ${questions.length}`;
     }
 
-    startQuiz();
+    const quizDiv = document.getElementById('quiz');
+    quizDiv.innerHTML = `
+    <h2>Czy chcesz rozpocząć quiz?</h2>
+    <button id="startBtn">Tak!</button>
+`;
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+        startQuiz();
+    });
 </script>
 
 </body>
