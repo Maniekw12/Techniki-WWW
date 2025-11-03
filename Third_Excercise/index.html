@@ -5,89 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f2f2f2;
-            margin: 0;
+            min-height: 100vh;
+            background: #1a1a2e;
         }
 
         .calculator {
-            width: 300px;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            background: #16213e;
+            width: 360px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
         .display {
             width: 100%;
-            height: 50px;
-            text-align: right;
-            font-size: 1.5rem;
-            padding: 10px;
-            margin-bottom: 20px;
+            height: 80px;
+            border-radius: 12px;
             border: none;
-            background-color: #ffeb3b;
-            border-radius: 8px;
-            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: right;
+            padding: 0 20px;
+            background: #0f3460;
+            color: #e94560;
+            border: 2px solid #1a4d7a;
         }
 
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
 
         .button {
-            background-color: #03a9f4;
-            border: none;
+            padding: 22px 0;
             font-size: 1.5rem;
-            padding: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
             cursor: pointer;
-            border-radius: 10px;
-            transition: background-color 0.3s, transform 0.2s;
-            color: white;
+            transition: all 0.2s;
         }
 
-        .button:hover {
-            background-color: #0288d1;
-            transform: scale(1.1);
+        .button.number {
+            background: #533483;
+            color: #fff;
         }
 
-        .button:active {
-            transform: scale(0.95);
-        }
-
-        .button.clear {
-            background-color: #ff5722;
-        }
-
-        .button.clear:hover {
-            background-color: #e64a19;
-        }
-
-        .button.equal {
-            background-color: #8bc34a;
-        }
-
-        .button.equal:hover {
-            background-color: #689f38;
+        .button.number:hover {
+            background: #6b4299;
+            transform: translateY(-2px);
         }
 
         .button.operator {
-            background-color: #ff9800;
+            background: #e94560;
+            color: #fff;
         }
 
         .button.operator:hover {
-            background-color: #f57c00;
+            background: #ff5577;
+            transform: translateY(-2px);
+        }
+
+        .button.clear {
+            background: #c23b5b;
+            color: #fff;
+        }
+
+        .button.clear:hover {
+            background: #d94560;
+            transform: translateY(-2px);
+        }
+
+        .button.equal {
+            background: #00adb5;
+            color: #fff;
+        }
+
+        .button.equal:hover {
+            background: #00c9d1;
+            transform: translateY(-2px);
+        }
+
+        .button.factorial {
+            grid-column: 2 / span 2;
+            background: #ff6b35;
+            color: #fff;
+        }
+
+        .button.factorial:hover {
+            background: #ff7f50;
+            transform: translateY(-2px);
+        }
+
+        .button:active {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+
+
+
 <div class="calculator">
     <input type="text" id="display" class="display" disabled>
     <div class="buttons">
@@ -96,32 +127,75 @@
         <button class="button operator" onclick="appendOperation('*')">*</button>
         <button class="button operator" onclick="appendOperation('-')">-</button>
 
-        <button class="button" onclick="appendNumber('7')">7</button>
-        <button class="button" onclick="appendNumber('8')">8</button>
-        <button class="button" onclick="appendNumber('9')">9</button>
+        <button class="button number" onclick="appendNumber('7')">7</button>
+        <button class="button number" onclick="appendNumber('8')">8</button>
+        <button class="button number" onclick="appendNumber('9')">9</button>
         <button class="button operator" onclick="appendOperation('+')">+</button>
 
-        <button class="button" onclick="appendNumber('4')">4</button>
-        <button class="button" onclick="appendNumber('5')">5</button>
-        <button class="button" onclick="appendNumber('6')">6</button>
+        <button class="button number" onclick="appendNumber('4')">4</button>
+        <button class="button number" onclick="appendNumber('5')">5</button>
+        <button class="button number" onclick="appendNumber('6')">6</button>
         <button class="button equal" onclick="calculate()">=</button>
 
-        <button class="button" onclick="appendNumber('1')">1</button>
-        <button class="button" onclick="appendNumber('2')">2</button>
-        <button class="button" onclick="appendNumber('3')">3</button>
-        <button class="button" onclick="appendNumber('0')">0</button>
+        <button class="button number" onclick="appendNumber('1')">1</button>
+        <button class="button number" onclick="appendNumber('2')">2</button>
+        <button class="button number" onclick="appendNumber('3')">3</button>
+        <button class="button number" onclick="appendNumber('0')">0</button>
+        <button class="button number" onclick="appendDecimal()">.</button>
+
+        <button class="button factorial" onclick="calculateFactorial()">!</button>
+        <button class="button factorial" onclick="deleteOneElement()"><-</button>
+
     </div>
 </div>
 
 <script>
     const display = document.getElementById('display');
+    const ERROR_MSG = "Błąd";
+    const INFINITY_MSG = "Infinity";
+    const MAX_LENGTH = 11;
+    const OPERATIONS = ['+', '-', '*', '/'];
+    const WELCOME_MESSAGE = 'licz :D';
 
-    function appendNumber(number) {
-        display.value += number;
+    display.value = WELCOME_MESSAGE;
+
+    function validateScreen() {
+        if (display.value === ERROR_MSG || display.value === INFINITY_MSG || display.value === WELCOME_MESSAGE) clearDisplay();
     }
 
-    function appendOperation(operator) {
-        if (display.value !== '' && !['+', '-', '*', '/'].includes(display.value.slice(-1))) {
+    function canAppend(valueToAdd, type) {
+        validateScreen();
+
+        const lastChar = display.value.slice(-1);
+
+        switch(type) {
+            case "number":
+                return display.value.length < MAX_LENGTH;
+            case "operator":
+                return display.value !== '' && !OPERATIONS.includes(lastChar) && display.value.length < MAX_LENGTH -1;
+            case "decimal":
+                let lastNumber = display.value.split(/[\+\-\*\/]/).pop();
+                return !lastNumber.includes('.') && display.value.length < MAX_LENGTH -1 && !OPERATIONS.includes(lastChar);
+            default:
+                return false;
+        }
+    }
+
+    function deleteOneElement() {
+        display.value = display.value.slice(0, -1);
+    }
+
+    function appendNumber(number) {
+        if(canAppend(number, "number")) {
+            display.value += number;
+        }
+    }
+
+    function appendOperation(operator){
+        if(canAppend(operator, "operator")) {
+            display.value += operator;
+        } else if(OPERATIONS.includes(display.value.slice(-1))) {
+            deleteOneElement();
             display.value += operator;
         }
     }
@@ -132,11 +206,58 @@
 
     function calculate() {
         try {
-            display.value = eval(display.value);
+            if(OPERATIONS.includes(display.value.slice(-1))){
+                deleteOneElement();
+            }
+
+            let result = eval(display.value).toString();
+
+            if(result.length > MAX_LENGTH){
+                result = result.slice(0, MAX_LENGTH);
+            }
+
+            display.value = result;
+
         } catch (error) {
-            display.value = 'Błąd';
+            display.value = ERROR_MSG;
         }
     }
+
+
+    function calculateFactorial(){
+        try {
+            let n = parseInt(display.value);
+            if(isNaN(n) || n < 0){
+                display.value = ERROR_MSG;
+                return;
+            }
+
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+
+            display.value = result;
+        }
+        catch (error){
+            display.value = ERROR_MSG;
+        }
+    }
+
+
+    function appendDecimal() {
+        if(canAppend('.', "decimal")) {
+            if (display.value === '') {
+                display.value = '0.';
+            } else {
+                display.value += '.';
+            }
+        }
+    }
+
+
+
 </script>
+
 </body>
 </html>

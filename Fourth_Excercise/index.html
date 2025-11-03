@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Prosty Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .quiz-container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .progress {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 6px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background: #e9ecef;
+            transform: scale(1.02);
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 15px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>Quiz</h1>
+    <div id="quiz"></div>
+    <div id="result"></div>
+</div>
+
+<script>
+    const file = 'quiz.json';
+
+    async function startQuiz() {
+        const response = await fetch(file);
+        const questions = await response.json();
+
+        const quizDiv = document.getElementById('quiz');
+        const resultDiv = document.getElementById('result');
+
+        let score = 0;
+        let current = 0;
+
+        while (current < questions.length) {
+            const q = questions[current];
+
+            quizDiv.innerHTML = `
+          <div class="progress">Pytanie ${current + 1} z ${questions.length}</div>
+          <div class="question">${q.question}</div>
+          ${q.answers.map((ans, i) => `<button data-index="${i}">${ans}</button>`).join('')}
+        `;
+
+            const userAnswer = await new Promise(resolve => {
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        resolve(parseInt(btn.dataset.index));
+                    });
+                });
+            });
+
+            if (userAnswer === q.correct) score++;
+            current++;
+        }
+
+        quizDiv.innerHTML = '';
+        resultDiv.textContent = `Twój wynik: ${score} / ${questions.length}`;
+    }
+
+    const quizDiv = document.getElementById('quiz');
+    quizDiv.innerHTML = `
+    <h2>Czy chcesz rozpocząć quiz?</h2>
+    <button id="startBtn">Tak!</button>
+`;
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+        startQuiz();
+    });
+</script>
+
+</body>
+</html>
